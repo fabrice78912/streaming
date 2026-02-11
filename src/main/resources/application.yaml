@@ -1,0 +1,24 @@
+server:
+  port: 8899
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/localdb
+    username: user
+    password: letmein
+    driver-class-name: org.postgresql.Driver
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+    consumer:
+      group-id: ledger-service
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        max.poll.records: 2
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
